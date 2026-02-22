@@ -1,0 +1,206 @@
+# Hadoop HDFS File Management – Practical Implementation
+
+## 📌 Aim
+
+To implement basic file management operations in Hadoop Distributed File System (HDFS) such as creating directories, uploading files, retrieving files, viewing contents, and deleting files.
+
+---
+
+## 🧰 Tools & Technologies Used
+
+* Hadoop (Hortonworks Sandbox)
+* HDFS (Hadoop Distributed File System)
+* Oracle VM VirtualBox
+* Ambari Dashboard
+* SSH Terminal / Browser SSH
+
+---
+
+## 🚀 Step-by-Step Procedure
+
+### 1️⃣ Start Hadoop Sandbox
+
+* Open VirtualBox.
+* Start Hortonworks Sandbox virtual machine.
+* Wait until all services initialize.
+
+---
+
+### 2️⃣ Open Ambari Dashboard
+
+Access Hadoop services UI:
+
+```
+http://localhost:8080
+```
+
+Login Credentials:
+
+```
+Username: admin
+Password: admin
+```
+
+---
+
+### 3️⃣ Start HDFS Services
+
+Navigate to:
+
+```
+Services → HDFS → Service Actions → Start All
+```
+
+This starts:
+
+* NameNode
+* DataNode
+* Secondary NameNode
+
+Ensure all components turn **green (Running)**.
+
+---
+
+### 4️⃣ Open SSH Terminal
+
+Access sandbox terminal via browser SSH or PuTTY.
+
+Login:
+
+```
+Username: maria_dev
+Password: maria_dev
+```
+
+---
+
+## 📂 HDFS File Management Commands
+
+### 5️⃣ List Root Directories
+
+```bash
+hadoop fs -ls /
+```
+
+Displays directories in HDFS root.
+
+---
+
+### 6️⃣ Create Directory
+
+```bash
+hadoop fs -mkdir ml-100k
+```
+
+Creates a folder in HDFS.
+
+---
+
+### 7️⃣ Verify Directory Creation
+
+```bash
+hadoop fs -ls /
+```
+
+---
+
+### 8️⃣ Download Dataset to Local System
+
+```bash
+wget http://media.sundog-soft.com/hadoop/ml-100k/u.data
+```
+
+Downloads MovieLens dataset.
+
+---
+
+### 9️⃣ Verify Downloaded File
+
+```bash
+ls
+```
+
+---
+
+### 🔟 Upload File to HDFS
+
+```bash
+hadoop fs -copyFromLocal u.data ml-100k/u.data
+```
+
+Copies file from local system to HDFS.
+
+---
+
+### 1️⃣1️⃣ Verify File Upload
+
+```bash
+hadoop fs -ls ml-100k
+```
+
+---
+
+### 1️⃣2️⃣ View File Content
+
+```bash
+hadoop fs -cat ml-100k/u.data | head
+```
+
+Displays first few records of dataset.
+
+---
+
+### 1️⃣3️⃣ Retrieve File from HDFS (Optional)
+
+```bash
+hadoop fs -copyToLocal ml-100k/u.data
+```
+
+Downloads file back to local system.
+
+---
+
+### 1️⃣4️⃣ Delete File from HDFS
+
+```bash
+hadoop fs -rm ml-100k/u.data
+```
+
+---
+
+### 1️⃣5️⃣ Delete Directory
+
+```bash
+hadoop fs -rmdir ml-100k
+```
+
+Removes directory from HDFS.
+
+---
+
+## 📊 Dataset Description
+
+The dataset used is the **MovieLens dataset**.
+
+Each record contains:
+
+| Field     | Description             |
+| --------- | ----------------------- |
+| User ID   | Unique user identifier  |
+| Movie ID  | Unique movie identifier |
+| Rating    | User rating (1–5)       |
+| Timestamp | Time of rating          |
+
+---
+
+## ✅ Result
+
+Successfully started HDFS services and implemented file management operations including directory creation, file upload, retrieval, content viewing, and deletion using Hadoop Distributed File System.
+
+---
+
+## 📎 References
+
+* Hadoop Official Documentation
+* Hortonworks Sandbox Environment
+* MovieLens Dataset
